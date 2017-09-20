@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class='center'>
+        <h2>Browse Directly</h2>
+        <p class='text-muted'>Enter keywords to find a match!</p>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+        <h2>Welcome Esteemed Colleague</h2>
+        <div class='subsubcontainer'>
+        <p class='text-muted'>With JustOrderIt, you can easily place orders for things we need in the lab. Search for your product first, and add it if it's not already in the database.<br>
+        Orders are processed every Wednesday morning.</p>
+        </div>
+        <div class='subcontainer'>
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <a href="{{ path('distributor_index') }}" class="thumbnail">
+                    <img src="{{ asset('img/truck.png') }}" alt='truck' />
+                    See distributors
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <a href="{{ path('product_index') }}" class="thumbnail">
+                    <img src="{{ asset('img/products.png') }}" alt='truck' />
+                    See products
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <a href="{{ path('indent_index') }}" class="thumbnail">
+                    <img src="{{ asset('img/orders.png') }}" alt='truck' />
+                    See orders
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+$('#form_query').addEventListener("keydown", function(e) {
+    if (!e) { var e = window.event; }
+    e.preventDefault();
+    // Enter is pressed
+    if (e.keyCode == 13) { submitForm(); }
+}, false);
+</script>
+{% endblock %}

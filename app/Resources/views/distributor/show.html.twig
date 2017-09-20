@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a class='badge' href="{{ path('distributor_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to the list</a>
+    <h1>{{ distributor.name }}</h1>
+    <a href="{{ path('distributor_edit', { 'id': distributor.id }) }}"><i class="fa fa-pencil actions" title='Edit'></i></a>
+
+    <p>{{ distributor.infos }}</p>
+    {{ form_start(delete_form) }}
+        <input class='button alert' type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+{% endblock %}

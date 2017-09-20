@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Edit an order</h1>
+    <a href="{{ path('indent_index') }}">Back to the list</a>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Save" />
+    {{ form_end(edit_form) }}
+
+    {{ form_start(delete_form) }}
+        <input type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+{% endblock %}

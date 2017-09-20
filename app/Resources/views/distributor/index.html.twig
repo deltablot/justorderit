@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Distributors list</h1>
+    <div class='right'><a class='button' href="{{ path('distributor_new') }}">Add distributor</a></div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Infos</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for distributor in distributors %}
+        <tr>
+            <td><a href="{{ path('distributor_show', { 'id': distributor.id }) }}">{{ distributor.id }}</a></td>
+            <td>{{ distributor.name }}</td>
+            <td>{{ distributor.infos }}</td>
+            <td class='actions'>
+                <a href="{{ path('distributor_show', { 'id': distributor.id }) }}"><i class="fa fa-eye actions" title='Show'></i></a>
+                <a href="{{ path('distributor_edit', { 'id': distributor.id }) }}"><i class="fa fa-pencil actions" title='Edit'></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+{% endblock %}

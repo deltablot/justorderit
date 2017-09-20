@@ -1,0 +1,18 @@
+Hello,
+
+{{ indents|length }} order{{ indents|length > 1 ? 's' }} to process:
+
+{% for indent in indents %}
+
+    Distributor: {{ indent.getProduct.getDistributor.getName }}
+    Description: {{ indent.getProduct.getName }}
+    Price: {{ indent.getProduct.price }}
+    Quantity: {{ indent.quantity }}
+    User: {{ indent.user }}
+
+===============================================================
+{% endfor %}
+
+Thanks!
+
+Have a nice day :)

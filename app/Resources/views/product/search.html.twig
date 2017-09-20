@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Search results</h1>
+<div>
+<ul>
+{% for product in products %}
+    {% for p in product %}
+        <li>
+        <a href="{{ path('product_show', { 'id': p.id }) }}">{{ p.getName }} - Ref: {{ p.getReference }} - Price: {{ p.getPrice }}€</a> <a href="{{ path('product_order', { 'id': p.id }) }}">Order it</a>
+        </li>
+    {% endfor %}
+{% endfor %}
+</ul>
+</div>
+
+{% endblock %}

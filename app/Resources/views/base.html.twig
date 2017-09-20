@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}JustOrderIt!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div id='container' class='container-fluid'>
+            <div id='logo'>
+                <a href="{{ path('homepage') }}">
+                    <img src="{{ asset('img/logo-color.png') }}" alt='justorderit' />
+                </a>
+            </div>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% block body %}{% endblock %}
+        </div>
+        <footer class='footer'>
+            <div class='container footer-div'>
+                <img src="{{ asset('img/logo-bw.png') }}" alt='justorderit' /><br>
+                © 2017 Nicolas CARPi
+            </div>
+        </footer>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

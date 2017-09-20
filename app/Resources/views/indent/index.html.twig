@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Orders list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Order Date</th>
+                <th>Product</th>
+                <th>Distributor</th>
+                <th>Quantity</th>
+                <th>User</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for indent in indents %}
+            <tr>
+                <td>{% if indent.getSent %}
+                    <span class='status ok'>Sent</span>
+                    {% else %}
+                    <span class='status warning'>Pending</span>
+                    {% endif %}
+                </td>
+                <td>{{ indent.sentAt ? indent.sentAt|date('Y-m-d') : 'Not ordered' }}</td>
+                <td class='long'><a href="{{ path('indent_show', { 'id': indent.id }) }}">{{ indent.getProduct.getName }}</a></td>
+                <td>{{ indent.getProduct.getDistributor.getName }}</td>
+                <td>{{ indent.quantity }}</td>
+                <td>{{ indent.user }}</td>
+                <td class='actions'>
+                    <a href="{{ path('indent_show', { 'id': indent.id }) }}"><i class="fa fa-eye actions" title='Show'></i></a>
+                    <a href="{{ path('indent_edit', { 'id': indent.id }) }}"><i class="fa fa-pencil actions" title='Edit'></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

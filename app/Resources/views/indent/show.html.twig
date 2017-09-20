@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a class='badge' href="{{ path('product_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to the list</a>
+    <h1>Show order</h1>
+    <a href="{{ path('indent_edit', { 'id': indent.id }) }}"><i class="fa fa-pencil actions" title='Edit'></i></a>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ indent.id }}</td>
+            </tr>
+            <tr>
+                <th>Ordertime</th>
+                <td>{% if indent.orderTime %}{{ indent.orderTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Productid</th>
+                <td>{{ indent.productId }}</td>
+            </tr>
+            <tr>
+                <th>Product name</th>
+                <td><a href="{{ path('product_show', { 'id': indent.productId }) }}">{{ productName }}</a></td>
+            </tr>
+            <tr>
+                <th>Distributor name</th>
+                <td>{{ distributorName }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ indent.quantity }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ indent.user }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ form_start(delete_form) }}
+        <input class='button alert' type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+{% endblock %}

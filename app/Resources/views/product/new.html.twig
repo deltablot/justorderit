@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Product creation</h1>
+    <a class='badge' href="{{ path('product_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to the list</a>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class='button' type="submit" value="Create" />
+    {{ form_end(form) }}
+
+{% endblock %}

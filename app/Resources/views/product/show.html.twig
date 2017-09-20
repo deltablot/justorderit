@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a class='badge' href="{{ path('product_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to the list</a>
+    <h1>{{ product.name }}</h1>
+    <a href="{{ path('product_edit', { 'id': product.id }) }}"><i class="fa fa-pencil actions" title='Edit'></i></a>
+    <a href="{{ path('product_order', { 'id': product.id }) }}"><i class="fa fa-shopping-cart actions" title='Order'></i></a>
+    <table>
+        <tbody>
+            <tr>
+                <th>Reference</th>
+                <td>{{ product.reference }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ product.price }}</td>
+            </tr>
+            <tr>
+                <th>Distributor</th>
+                <td>{{ product.distributor }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {{ form_start(delete_form) }}
+        <input class='button alert' type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+
+
+{% endblock %}
