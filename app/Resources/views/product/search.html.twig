@@ -7,7 +7,8 @@
 {% for product in products %}
     {% for p in product %}
         <li>
-        <a href="{{ path('product_show', { 'id': p.id }) }}">{{ p.getName }} - Ref: {{ p.getReference }} - Price: {{ p.getPrice }}€</a> <a href="{{ path('product_order', { 'id': p.id }) }}">Order it</a>
+        <a href="{{ path('product_show', { 'id': p.id }) }}"><h3>{{ p.getName }} - Ref: {{ p.getReference }} - Price: {{ p.getPrice }}€</h3></a>
+        <a href="{{ path('product_order', { 'id': p.id }) }}">Just order it! <i class="fa fa-shopping-cart actions" title='Order'></i></a>
         </li>
     {% endfor %}
 {% endfor %}

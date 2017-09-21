@@ -36,6 +36,9 @@ body {
     font-size: 150%;
 }
 
+ul {
+    list-style-type: none;
+}
 
 a.button, a.button:hover, a.button:active {
     text-decoration: none;
@@ -72,7 +75,11 @@ p { margin: 0 0 1em 0; }
 a {
     color: #2cd88c;
 }
-a:hover { text-decoration: none; }
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
 i.actions {
     color: #7577b5;
 }
@@ -177,7 +184,7 @@ tr:nth-child(odd) {
 
 /* ALERTS (flash messages) */
 .flash-notice {
-    /* TODO */
+    background-color: #2cd88c;
 }
 
 @media (min-width: 768px) {
