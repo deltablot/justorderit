@@ -2,14 +2,14 @@
 
 {% block body %}
     <h1>Edit an order</h1>
-    <a href="{{ path('indent_index') }}">Back to the list</a>
+    <a class='badge' href="{{ path('indent_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to the list</a>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Save" />
+        <input class='button' type="submit" value="Save" />
     {{ form_end(edit_form) }}
 
     {{ form_start(delete_form) }}
-        <input type="submit" value="Delete">
+        <input class='button alert' type="submit" value="Delete">
     {{ form_end(delete_form) }}
 {% endblock %}
