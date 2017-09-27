@@ -1,0 +1,61 @@
+# docker justorderit configuration file
+# use : "docker-compose up -d" to start containers
+
+# our first container is nginx + justorderit
+web:
+    build: .
+    restart: always
+    container_name: justorderit
+    # drop some capabilities
+    cap_drop:
+        - AUDIT_WRITE
+        - MKNOD
+        - SYS_CHROOT
+        - SETFCAP
+        - NET_RAW
+        - SYS_PTRACE
+    environment:
+        # no need to change
+        - DB_HOST=mysql
+        # no need to change
+        - DB_NAME=justorderit
+        # no need to change
+        - DB_USER=justorderit
+        # need to change
+        - DB_PASSWORD=secr3t
+    ports:
+        # if you want elabftw to run on a different port, change the first number
+        # host:container
+        - "443:443"
+    volumes:
+        # this is where you will keep the uploaded files persistently
+        # host:container
+        - /var/justorderit/uploads:/justorderit/uploads
+
+    links:
+        - mysql
+mysql:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql
+    # drop some capabilities
+    cap_drop:
+        - AUDIT_WRITE
+        - MKNOD
+        - SYS_CHROOT
+        - SETFCAP
+        - NET_RAW
+    environment:
+        # need to change
+        - MYSQL_ROOT_PASSWORD=secr3t
+        # no need to change
+        - MYSQL_DATABASE=justorderit
+        # no need to change
+        - MYSQL_USER=justorderit
+        # need to change
+        - MYSQL_PASSWORD=secr3t
+    volumes:
+        # this is where you will keep the database persistently
+        # host:container
+        - /var/justorderit/mysql:/var/lib/mysql
+
