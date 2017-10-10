@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
@@ -56,6 +57,14 @@ class Product
      */
     private $distributor;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="quote", type="string")
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "application/pdf" })
+     */
+    private $quote;
 
     /**
      * Get id
@@ -177,5 +186,17 @@ class Product
     public function __toString()
     {
         return (string) $this->id;
+    }
+
+    public function getQuote()
+    {
+        return $this->quote;
+    }
+
+    public function setQuote($quote)
+    {
+        $this->quote = $quote;
+
+        return $this;
     }
 }

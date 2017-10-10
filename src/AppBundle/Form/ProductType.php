@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProductType extends AbstractType
 {
@@ -19,6 +20,8 @@ class ProductType extends AbstractType
             'class' => 'AppBundle:Distributor',
             'choice_label' => 'name',
         ));
+        // add a field for the quote
+        $builder->add('quote', FileType::class, array('label' => 'Quote (PDF file)'));
 
     }
 
@@ -39,5 +42,4 @@ class ProductType extends AbstractType
     {
         return 'appbundle_product';
     }
-
 }
