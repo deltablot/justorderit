@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Swift_Attachment;
 
 /**
  * The cron controller
@@ -33,7 +34,6 @@ class CronController extends Controller
      */
     public function cronAction()
     {
-     //   var_dump($this);die;
         // get all orders that are not sent yet
         $criteria = new \Doctrine\Common\Collections\Criteria();
         $criteria->where($criteria->expr()->eq('sent', 0));
@@ -41,13 +41,28 @@ class CronController extends Controller
 
         $ordersToProcess = count($indents);
 
-        //var_dump($this->get('parameter')->getParameter('mailer_to'));die;
         if ($ordersToProcess > 0) {
             $message = (new \Swift_Message('Orders to process'))
             ->setFrom($this->getParameter('mailer_from'))
             ->setTo($this->getParameter('mailer_to'))
             ->setBody($this->renderView('cron/cron.text.twig', array('indents' => $indents)), 'text/plain');
 
+            // check if we need to attach a pdf
+            foreach ($indents as $indent) {
+                if ($indent->getProduct()->getQuote()) {
+                    // Create the attachment
+                    $fileName = $indent->getProduct()->getQuote();
+                    $folder = substr($fileName, 0, 3);
+                    $message->attach(
+                        Swift_Attachment::fromPath(
+                            $this->getParameter('quotes_directory') . '/' . $folder . '/' . $fileName
+                        )
+                        ->setFilename('quote-' . $indent->getProduct()->getName() . '.pdf')
+                    );
+                }
+            }
+
+            // send the mail
             $result = $this->get('mailer')->send($message);
 
             // now update the sent column for indents that have been sent
@@ -57,7 +72,6 @@ class CronController extends Controller
             $this->em->flush();
         }
 
-        //return $ordersToProcess;
         return new Response($ordersToProcess);
     }
 }

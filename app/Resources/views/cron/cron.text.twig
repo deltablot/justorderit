@@ -6,10 +6,13 @@ Hello,
 
     Distributor: {{ indent.getProduct.getDistributor.getName }}
     Description: {{ indent.getProduct.getName }}
-    Price: {{ indent.getProduct.price }}
+    Price: {{ indent.getProduct.getPrice }}
     Reference: {{ indent.getProduct.getReference }}
-    Quantity: {{ indent.quantity }}
-    User: {{ indent.user }}
+    Quantity: {{ indent.getQuantity }}
+    User: {{ indent.getUser }}
+    {% if indent.getProduct.getQuote %}
+    Quote: See attached file for the quote
+    {% endif %}
 
 ===============================================================
 {% endfor %}
