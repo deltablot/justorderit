@@ -26,6 +26,23 @@ body {
 #logo {
     margin-bottom: 30px;
 }
+
+#topmenu {
+    float: right;
+    margin-top: 20px;
+}
+#topmenu ul li {
+    display: inline;
+    margin-left: 30px;
+    font-size: 110%;
+}
+#topmenu ul li a {
+    color: white;
+}
+#topmenu ul li a:hover {
+    color: #2cd88c;
+}
+
 .button {
     margin-top: 15px;
     padding: 5px 15px;

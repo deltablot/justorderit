@@ -12,11 +12,21 @@
     </head>
     <body>
         <div id='container' class='container-fluid'>
+            {% block topmenu %}
+                <div id='topmenu'>
+                    <ul>
+                        <li><a href="{{ path('distributor_index') }}">See distributors</a></li>
+                        <li><a href="{{ path('product_index') }}">See products</a></li>
+                        <li><a href="{{ path('indent_index') }}">See orders</a></li>
+                    </ul>
+                </div>
+            {% endblock %}
             <div id='logo'>
                 <a href="{{ path('homepage') }}">
                     <img src="{{ asset('img/logo-color.png') }}" alt='justorderit' />
                 </a>
             </div>
+
             {% for label, messages in app.flashes %}
                 {% for message in messages %}
                     <div class="alert flash-{{ label }}">
