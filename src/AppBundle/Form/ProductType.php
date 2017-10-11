@@ -21,7 +21,10 @@ class ProductType extends AbstractType
             'choice_label' => 'name',
         ));
         // add a field for the quote
-        $builder->add('quote', FileType::class, array('label' => 'Quote (PDF file)'));
+        $builder->add('quote', FileType::class, array(
+            'label' => 'Quote (PDF file)',
+            'required' => false
+        ));
 
     }
 

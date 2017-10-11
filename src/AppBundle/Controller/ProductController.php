@@ -53,17 +53,19 @@ class ProductController extends Controller
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $product->getQuote();
-            // Generate a unique name for the file before saving it
-            $fileName = hash('sha512', uniqid(rand(), true)) . '.' . $file->guessExtension();
-            $folder = substr($fileName, 0, 3);
-            // Move the file to the directory where quotes are stored
-            $file->move(
-                $this->getParameter('quotes_directory') . '/' . $folder,
-                $fileName
-            );
-            // Update the 'quote' property to store the PDF file name
-            // instead of its contents
-            $product->setQuote($fileName);
+            if ($file) {
+                // Generate a unique name for the file before saving it
+                $fileName = hash('sha512', uniqid(rand(), true)) . '.' . $file->guessExtension();
+                $folder = substr($fileName, 0, 3);
+                // Move the file to the directory where quotes are stored
+                $file->move(
+                    $this->getParameter('quotes_directory') . '/' . $folder,
+                    $fileName
+                );
+                // Update the 'quote' property to store the PDF file name
+                // instead of its contents
+                $product->setQuote($fileName);
+            }
 
 
             $em = $this->getDoctrine()->getManager();
@@ -159,17 +161,19 @@ class ProductController extends Controller
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $product->getQuote();
-            // Generate a unique name for the file before saving it
-            $fileName = hash('sha512', uniqid(rand(), true)) . '.' . $file->guessExtension();
-            $folder = substr($fileName, 0, 3);
-            // Move the file to the directory where quotes are stored
-            $file->move(
-                $this->getParameter('quotes_directory') . '/' . $folder,
-                $fileName
-            );
-            // Update the 'quote' property to store the PDF file name
-            // instead of its contents
-            $product->setQuote($fileName);
+            if ($file) {
+                // Generate a unique name for the file before saving it
+                $fileName = hash('sha512', uniqid(rand(), true)) . '.' . $file->guessExtension();
+                $folder = substr($fileName, 0, 3);
+                // Move the file to the directory where quotes are stored
+                $file->move(
+                    $this->getParameter('quotes_directory') . '/' . $folder,
+                    $fileName
+                );
+                // Update the 'quote' property to store the PDF file name
+                // instead of its contents
+                $product->setQuote($fileName);
+            }
 
             $this->getDoctrine()->getManager()->flush();
 

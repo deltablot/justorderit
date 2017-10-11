@@ -19,10 +19,12 @@
                 <th>Distributor</th>
                 <td>{{ product.distributor }}</td>
             </tr>
+            {% if not product.quote == null %}
             <tr>
                 <th>Quote</th>
                 <td>{{ product.quote }}</td>
             </tr>
+            {% endif %}
         </tbody>
     </table>
     {{ form_start(delete_form) }}

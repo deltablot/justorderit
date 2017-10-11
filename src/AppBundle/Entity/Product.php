@@ -60,11 +60,9 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="quote", type="string")
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "application/pdf" })
+     * @ORM\Column(name="quote", type="string", nullable=true)
      */
-    private $quote;
+    private $quote = null;
 
     /**
      * Get id
