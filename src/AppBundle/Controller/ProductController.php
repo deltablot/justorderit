@@ -28,7 +28,11 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $products = $em->getRepository('AppBundle:Product')->findAll();
+        // show latest products first
+        $products = $em->getRepository('AppBundle:Product')->findBy(
+            array(),
+            array('id' => 'DESC')
+        );
 
         return $this->render('product/index.html.twig', array(
             'products' => $products,
@@ -50,23 +54,7 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $file = $product->getQuote();
-            if ($file) {
-                // Generate a unique name for the file before saving it
-                $fileName = hash('sha512', uniqid(rand(), true)) . '.' . $file->guessExtension();
-                $folder = substr($fileName, 0, 3);
-                // Move the file to the directory where quotes are stored
-                $file->move(
-                    $this->getParameter('quotes_directory') . '/' . $folder,
-                    $fileName
-                );
-                // Update the 'quote' property to store the PDF file name
-                // instead of its contents
-                $product->setQuote($fileName);
-            }
-
+            $this->saveQuote($product);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
@@ -158,22 +146,7 @@ class ProductController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $file = $product->getQuote();
-            if ($file) {
-                // Generate a unique name for the file before saving it
-                $fileName = hash('sha512', uniqid(rand(), true)) . '.' . $file->guessExtension();
-                $folder = substr($fileName, 0, 3);
-                // Move the file to the directory where quotes are stored
-                $file->move(
-                    $this->getParameter('quotes_directory') . '/' . $folder,
-                    $fileName
-                );
-                // Update the 'quote' property to store the PDF file name
-                // instead of its contents
-                $product->setQuote($fileName);
-            }
+            $this->saveQuote($product);
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -229,5 +202,32 @@ class ProductController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Replace the quote file by a string of the filename
+     * so save the file basically
+     *
+     * @param Product $product The product entity
+     */
+    private function saveQuote(Product $product)
+    {
+        // $file stores the uploaded PDF file
+        /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+        $file = $product->getQuote();
+
+        if ($file) {
+            // Generate a unique name for the file before saving it
+            $fileName = hash('sha512', uniqid(rand(), true)) . '.' . $file->guessExtension();
+            $folder = substr($fileName, 0, 3);
+            // Move the file to the directory where quotes are stored
+            $file->move(
+                $this->getParameter('quotes_directory') . '/' . $folder,
+                $fileName
+            );
+            // Update the 'quote' property to store the PDF file name
+            // instead of its contents
+            $product->setQuote($fileName);
+        }
     }
 }
