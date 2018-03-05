@@ -19,6 +19,10 @@ class ProductType extends AbstractType
         $builder->add('distributor', EntityType::class, array(
             'class' => 'AppBundle:Distributor',
             'choice_label' => 'name',
+            'query_builder' => function ($er) {
+                return $er->createQueryBuilder('d')
+                    ->orderBy('d.name', 'ASC');
+            },
         ));
         // add a field for the quote
         $builder->add('quote', FileType::class, array(
