@@ -26,3 +26,17 @@ php bin/console doctrine:schema:update --force
 ~~~bash
 curl https://justorderit/cron
 ~~~
+
+## Dev
+
+Starting the dev server:
+
+~~~bash
+php bin/console server:run
+~~~
+
+Clearing the cache on the prod server after an update:
+
+~~~bash
+rm -rf var/cache/prod/
+~~~
