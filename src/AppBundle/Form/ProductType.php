@@ -15,7 +15,7 @@ class ProductType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('reference')->add('price');
+        $builder->add('name')->add('reference')->add('price')->add('currency');
         $builder->add('distributor', EntityType::class, array(
             'class' => 'AppBundle:Distributor',
             'choice_label' => 'name',

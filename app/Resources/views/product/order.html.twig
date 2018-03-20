@@ -5,7 +5,7 @@
     <a class='badge' href="{{ path('product_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to the list</a>
     <br>
     <br>
-    <h2>{{ product.getName }} ({{ product.getPrice }}€) Ref: {{ product.getReference }}</h2>
+    <h2>{{ product.getName }} ({{ product.getPrice }} {{ product.getCurrency }}) Ref: {{ product.getReference }}</h2>
 
     {{ form_start(order_form) }}
         {{ form_widget(order_form) }}
