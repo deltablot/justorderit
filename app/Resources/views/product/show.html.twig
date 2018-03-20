@@ -25,6 +25,18 @@
                 <td>{{ product.quote }}</td>
             </tr>
             {% endif %}
+
+            <tr>
+                <th>Previous orders</th>
+                <td>
+                    {% for order in indent %}
+                    {% if order.getSent %}
+                        Date: {{ order.getOrderTime|date('Y-m-d') }} | Quantity: {{ order.getQuantity }} | User: {{ order.getUser }}
+                    {% endif %}
+                    <br>
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
     {{ form_start(delete_form) }}
