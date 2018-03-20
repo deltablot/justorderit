@@ -161,7 +161,7 @@ class Product
     }
 
     /**
-     * Get distributor
+     * Get distributor id
      *
      * @return int
      */
