@@ -106,7 +106,7 @@ class IndentController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('indent_edit', array('id' => $indent->getId()));
+            return $this->redirectToRoute('indent_show', array('id' => $indent->getId()));
         }
 
         return $this->render('indent/edit.html.twig', array(

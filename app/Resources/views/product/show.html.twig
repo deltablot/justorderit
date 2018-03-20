@@ -3,8 +3,8 @@
 {% block body %}
     <a class='badge' href="{{ path('product_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to the list</a>
     <h1>{{ product.name }}</h1>
-    <a href="{{ path('product_edit', { 'id': product.id }) }}"><i class="fa fa-pencil actions" title='Edit'></i></a>
-    <a href="{{ path('product_order', { 'id': product.id }) }}"><i class="fa fa-shopping-cart actions" title='Order'></i></a>
+    <a href="{{ path('product_edit', { 'id': product.id }) }}"><i class="fa fa-2x fa-pencil actions" title='Edit'></i></a>
+    <a href="{{ path('product_order', { 'id': product.id }) }}"><i class="fa fa-2x fa-shopping-cart actions" title='Order'></i></a>
     <table>
         <tbody>
             <tr>
