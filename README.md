@@ -14,6 +14,7 @@ Not ready for prime time.
 mysql -uroot -p
 MySQL> create datbase justorderit;
 MySQL> grant usage on *.* to justorderit@localhost identified by 'YOUR_PASSWORD';
+# remove the \ before the * it's just here to prevent bad syntax highlighting
 MySQL> grant all privileges on justorderit.\* to justorderit@localhost;
 MySQL> exit;
 ~~~
