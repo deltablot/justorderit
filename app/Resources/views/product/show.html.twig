@@ -22,7 +22,7 @@
             {% if not product.quote == null %}
             <tr>
                 <th>Quote</th>
-                <td>{{ product.quote }}</td>
+                <td><a href='../uploads/quotes/{{ product.quote[:3] }}/{{ product.quote }}'>{{ product.quote }}</a></td>
             </tr>
             {% endif %}
 
