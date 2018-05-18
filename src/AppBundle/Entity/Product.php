@@ -61,6 +61,7 @@ class Product
      * @var string
      *
      * @ORM\Column(name="quote", type="string", nullable=true)
+     * @Assert\File(mimeTypes={ "application/pdf" })
      */
     private $quote = null;
 
