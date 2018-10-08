@@ -2,11 +2,12 @@
 
 {% block body %}
 <h1>Search results</h1>
+<div class='right'><a class='button' href="{{ path('product_new') }}">Add product</a></div>
 <div>
 <ul>
 {% for product in products %}
     {% for p in product %}
-        <li>
+        <li class='box'>
         <a href="{{ path('product_show', { 'id': p.id }) }}"><h3>{{ p.getName }} - Ref: {{ p.getReference }} - Price: {{ p.getPrice }}€</h3></a>
         <a href="{{ path('product_order', { 'id': p.id }) }}">Just order it! <i class="fa fa-shopping-cart actions" title='Order'></i></a>
         </li>
