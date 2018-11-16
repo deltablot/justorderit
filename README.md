@@ -4,7 +4,9 @@
 
 A product database where you can order a product and use a cronjob to send an email with the orders to process.
 
-Not ready for prime time.
+Not ready for prime time. Use at your own risk.
+
+![justorderit](https://user-images.githubusercontent.com/3043706/48621130-ddcd6780-e9a2-11e8-8ca6-f0a409732108.png)
 
 ## Installation
 
