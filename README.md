@@ -23,9 +23,13 @@ MySQL> exit;
 
 ~~~bash
 git clone https://github.com/NicolasCARPi/justorderit/
-# install composer
+# install composer (not shown)
+# install php dependencies
 php composer.phar install --no-dev
+# mysql structure
 php bin/console doctrine:schema:update --force
+# fix permissions
+sudo chown -R www-data:www-data var/cache var/logs var/sessions
 ~~~
 
 ## Setting up the cronjob
