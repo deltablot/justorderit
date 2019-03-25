@@ -30,6 +30,8 @@ php composer.phar install --no-dev
 php bin/console doctrine:schema:update --force
 # fix permissions
 sudo chown -R www-data:www-data var/cache var/logs var/sessions
+mkdir -p web/uploads/quotes
+sudo chown -R www-data:www-data web/uploads
 ~~~
 
 ## Setting up the cronjob
