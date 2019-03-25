@@ -19,6 +19,7 @@ class ProductType extends AbstractType
         $builder->add('distributor', EntityType::class, array(
             'class' => 'AppBundle:Distributor',
             'choice_label' => 'name',
+            'placeholder' => 'Select a distributor',
             'query_builder' => function ($er) {
                 return $er->createQueryBuilder('d')
                     ->orderBy('d.name', 'ASC');
