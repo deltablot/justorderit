@@ -61,8 +61,16 @@ class Product
      * @var string
      *
      * @ORM\Column(name="quote", type="string", nullable=true)
+     * @Assert\File(mimeTypes={ "application/pdf" })
      */
     private $quote = null;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="currency", type="string", nullable=false)
+     */
+    private $currency = '€';
 
     /**
      * Get id
@@ -161,7 +169,7 @@ class Product
     }
 
     /**
-     * Get distributor
+     * Get distributor id
      *
      * @return int
      */
@@ -194,6 +202,18 @@ class Product
     public function setQuote($quote)
     {
         $this->quote = $quote;
+
+        return $this;
+    }
+
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
 
         return $this;
     }

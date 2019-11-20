@@ -226,3 +226,10 @@ footer {
     padding-top: 1em;
     padding-bottom: 1em;
 }
+
+.box {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+}

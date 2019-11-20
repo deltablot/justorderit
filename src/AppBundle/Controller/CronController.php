@@ -62,8 +62,13 @@ class CronController extends Controller
                 }
             }
 
+            // add CC if config is here
+            if ($this->getParameter('mailer_cc')) {
+                $message->addCc($this->getParameter('mailer_cc'));
+            }
+
             // send the mail
-            $result = $this->get('mailer')->send($message);
+            $this->get('mailer')->send($message);
 
             // now update the sent column for indents that have been sent
             foreach ($indents as $indent) {

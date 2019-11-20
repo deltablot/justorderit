@@ -3,8 +3,8 @@
 {% block body %}
     <a class='badge' href="{{ path('product_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to the list</a>
     <h1>{{ product.name }}</h1>
-    <a href="{{ path('product_edit', { 'id': product.id }) }}"><i class="fa fa-pencil actions" title='Edit'></i></a>
-    <a href="{{ path('product_order', { 'id': product.id }) }}"><i class="fa fa-shopping-cart actions" title='Order'></i></a>
+    <a href="{{ path('product_edit', { 'id': product.id }) }}"><i class="fa fa-2x fa-pencil actions" title='Edit'></i></a>
+    <a href="{{ path('product_order', { 'id': product.id }) }}"><i class="fa fa-2x fa-shopping-cart actions" title='Order'></i></a>
     <table>
         <tbody>
             <tr>
@@ -13,18 +13,30 @@
             </tr>
             <tr>
                 <th>Price</th>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price }} {{ product.currency }}</td>
             </tr>
             <tr>
                 <th>Distributor</th>
-                <td>{{ product.distributor }}</td>
+                <td>{{ product.getDistributor.getName }}</td>
             </tr>
             {% if not product.quote == null %}
             <tr>
                 <th>Quote</th>
-                <td>{{ product.quote }}</td>
+                <td><a href='../uploads/quotes/{{ product.quote[:3] }}/{{ product.quote }}'>{{ product.quote }}</a></td>
             </tr>
             {% endif %}
+
+            <tr>
+                <th>Previous orders</th>
+                <td>
+                    {% for order in indent %}
+                    {% if order.getSent %}
+                        Date: {{ order.getOrderTime|date('Y-m-d') }} | Quantity: {{ order.getQuantity }} | User: {{ order.getUser }}
+                    {% endif %}
+                    <br>
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
     {{ form_start(delete_form) }}

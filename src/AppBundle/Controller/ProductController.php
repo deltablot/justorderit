@@ -119,7 +119,15 @@ class ProductController extends Controller
     {
         $deleteForm = $this->createDeleteForm($product);
 
+        // get the previous orders
+        $indent = new Indent();
+        $em = $this->getDoctrine()->getManager();
+        $indent = $em->getRepository('AppBundle:Indent')->findBy(
+            array('product' => $product->getId())
+        );
+
         return $this->render('product/show.html.twig', array(
+            'indent' => $indent,
             'product' => $product,
             'delete_form' => $deleteForm->createView(),
         ));

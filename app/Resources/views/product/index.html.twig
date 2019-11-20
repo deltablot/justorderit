@@ -19,7 +19,7 @@
             <tr>
                 <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.name }}</a></td>
                 <td>{{ product.reference }}</td>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price }} {{ product.currency }}</td>
                 <td>{{ product.getDistributor.getName }}</td>
                 <td class='actions'>
                     <a href="{{ path('product_show', { 'id': product.id }) }}"><i class="fa fa-eye actions" title='Show'></i></a>
