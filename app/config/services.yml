@@ -30,10 +30,10 @@ services:
         tags: ['controller.service_arguments']
 
     # the cron controller that needs the entity_manager as argument
-    AppBundle\Controller\CronController\:
+    #AppBundle\Controller\CronController\:
         #arguments: [ "@doctrine.orm.entity_manager" ]
-        synthetic: true
-        public: true
+        #    synthetic: true
+        #public: true
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
