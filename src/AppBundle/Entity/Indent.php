@@ -39,6 +39,7 @@ class Indent
      * @var Product
      *
      * @ORM\ManyToOne(targetEntity="Product", fetch="EAGER")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $product;
 
